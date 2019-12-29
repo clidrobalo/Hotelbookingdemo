@@ -1,6 +1,16 @@
 package clidrobalo.bookingdemo.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class HotelBooking {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
     private String name;
     private double pricePerNight;
     private int nrOfNight;
@@ -41,5 +51,9 @@ public class HotelBooking {
 
     public void setNrOfNight(int nrOfNight) {
         this.nrOfNight = nrOfNight;
+    }
+
+    public long getId() {
+        return id;
     }
 }
