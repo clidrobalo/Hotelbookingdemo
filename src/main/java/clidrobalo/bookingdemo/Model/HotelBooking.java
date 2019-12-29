@@ -5,6 +5,10 @@ public class HotelBooking {
     private double pricePerNight;
     private int nrOfNight;
 
+    public HotelBooking() {
+
+    }
+
     public HotelBooking(String name, double pricePerNight, int nrOfNight) {
         this.name = name;
         this.pricePerNight = pricePerNight;
