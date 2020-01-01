@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hotel Booking App</title>
+    <link th:if="${mode == 'development'}" rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+    <link th:if="${mode == 'production'}" rel="stylesheet" href="../static/bootstrap.min.css" th:href="@{/bootstrap.min.css}"/>
+    <script type="text/javascript" src="/static/angular.min.js" th:src="@{/angular.min.js}"></script>
+    <script type="text/javascript" src="/static/app/app.module.js" th:src="@{/app/app.module.js}"></script>
+    <script type="text/javascript" src="/static/app/bookings.controller.js" th:src="@{/app/bookings.controller.js}"></script>
+</head>
+<body ng-app="app"  ng-controller="BookingsController as vm">
+    <div class="container">
+        <header class="bg-light">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a  class="navbar-brand" href="#">Booking Hotel</a>
+                    </div>
+                    <p class="navbar-text navbar-right text-dark  mr-2" th:text="'Sign in as ' + ${username}">Sign is as Anonymus</p>
+                </div>
+            </nav>
+        </header>
+
+        <div class="mt-5" style="height: 600px;">
+            <div class="row">
+                <div class="container col-lg-2 col-lg-8">
+                    <table class="table">
+                        <thead>
+                            <th>Hotel</th>
+                            <th>Nights</th>
+                            <th>Price/Nights</th>
+                            <th>Total Price</th>
+                            <th style="width: 90px"></th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="booking in vm.bookings">
+                                <td>{{booking.name}}</td>
+                                <td>{{booking.nrOfNight}}</td>
+                                <td>{{booking.pricePerNight}}</td>
+                                <td>{{booking.totalPrice}}</td>
+                                <td>
+                                    <button class="btn btn-danger" ng-cl="vm.deleteBooking(booking.id)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer bg-dark text-white p-2 text-center">
+                <p class="" th:text="${#dates.format(datetime, 'dd-MM-yyyy HH:mm')}">Rended - Today</p>
+        </footer>
+    </div>
+
+</body>
+</html>
